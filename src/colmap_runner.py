@@ -42,3 +42,33 @@ class ColmapRunner:
             "--output_path", str(output_path),
         ]
         self._run(cmd)
+
+    def run_image_undistorter(self, image_path, sparse_path, dense_path, max_image_size=2000):
+        cmd = [
+            self.colmap_path,
+            "image_undistorter",
+            "--image_path", str(image_path),
+            "--input_path", str(sparse_path),
+            "--output_path", str(dense_path),
+            "--output_type", "COLMAP",
+            "--max_image_size", str(max_image_size)
+        ]
+        self._run(cmd)
+
+    def run_patch_match_stereo(self, dense_path):
+        cmd = [
+            self.colmap_path,
+            "patch_match_stereo",
+            "--workspace_path", str(dense_path),
+            "--PatchMatchStereo.geom_consistency", "true"
+        ]
+        self._run(cmd)
+
+    def run_stereo_fusion(self, dense_path, output_path):
+        cmd = [
+            self.colmap_path,
+            "stereo_fusion",
+            "--workspace_path", str(dense_path),
+            "--output_path", str(output_path)
+        ]
+        self._run(cmd)
