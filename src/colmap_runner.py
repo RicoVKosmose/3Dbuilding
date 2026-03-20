@@ -4,11 +4,11 @@ import os
 
 class ColmapRunner:
     def __init__(self):
-        self.colmap_path = r"D:\Colmap\colmap-x64-windows-nocuda\colmap.bat"
+        self.colmap_path = r"D:\Colmap\colmap-x64-windows-cuda\colmap.bat"
 
         self.env = os.environ.copy()
 
-        self.env["QT_QPA_PLATFORM_PLUGIN_PATH"] = r"D:\Colmap\colmap-x64-windows-nocuda\plugins\platforms"
+        self.env["QT_QPA_PLATFORM_PLUGIN_PATH"] = r"D:\Colmap\colmap-x64-windows-cuda\plugins\platforms"
         self.env["QT_QPA_PLATFORM"] = "windows"
         self.env["COLMAP_NO_GUI"] = "1"
 
@@ -69,6 +69,15 @@ class ColmapRunner:
             self.colmap_path,
             "stereo_fusion",
             "--workspace_path", str(dense_path),
+            "--output_path", str(output_path)
+        ]
+        self._run(cmd)
+
+    def run_poisson_mesher(self, input_path, output_path):
+        cmd = [
+            self.colmap_path,
+            "poisson_mesher",
+            "--input_path", str(input_path),
             "--output_path", str(output_path)
         ]
         self._run(cmd)
