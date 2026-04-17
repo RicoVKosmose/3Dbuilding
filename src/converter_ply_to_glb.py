@@ -1,7 +1,7 @@
 import trimesh
 
 # Загружаем PLY
-mesh = trimesh.load("E:/program/3Dbuilding/data/dense/meshed-poisson.ply")
+mesh = trimesh.load("C:/Users/Mr_Herceg/Desktop/3Dbuilding/data/dense/mesh.ply")
 
 # Экспортируем в glb для веба
-mesh.export("E:/program/3Dbuilding/data/dense/meshed-poisson.glb")
+mesh.export("C:/Users/Mr_Herceg/Desktop/3Dbuilding/data/dense/mesh.glb")
